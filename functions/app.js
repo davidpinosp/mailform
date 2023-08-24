@@ -2,7 +2,7 @@ const express = require("express");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const serverless = require("serverless-http");
-
+const router = express.Router();
 const app = express();
 // const PORT = process.env.PORT || 3000;
 
@@ -18,8 +18,13 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+router.get("/", async (req, res) => {
+  res.json({ hole: "holis" });
+});
+
 // API endpoint to send an email
-app.post("/send-email", async (req, res) => {
+
+router.post("/send-email", async (req, res) => {
   try {
     const { to, subject, text } = req.body;
 
