@@ -1,10 +1,10 @@
-require("dotenv").config();
 const express = require("express");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
+const serverless = require("serverless-http");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.json());
@@ -40,7 +40,9 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// // Start the server
+// app.listen(PORT, () => {
+//   console.log(`Server is running on port ${PORT}`);
+// });
+app.use("netlify/functions/app", router);
+module.exports.handler = serverless(app);
