@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
 
 router.post("/send-email", async (req, res) => {
   try {
-    const { to, subject, text } = req.body;
+    const { subject, text } = req.body;
 
     // Send email using the transporter
     await transporter.sendMail({
