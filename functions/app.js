@@ -31,7 +31,7 @@ router.post("/send-email", async (req, res) => {
     // Send email using the transporter
     await transporter.sendMail({
       from: process.env.Email, // Your email address
-      to,
+      to: process.env.Destination,
       subject,
       text,
     });
